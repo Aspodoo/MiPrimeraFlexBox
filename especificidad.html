@@ -1,0 +1,46 @@
+<!-- SECCIÓN 2: Banner Principal (ESPECIFICIDAD) -->
+    <div class="hero-section">
+        <h1 class="display-3 fw-bold" style="color: #4a3f65;">Especificidad en CSS</h1>
+        <p class="fs-4">Etiquetas • Clases • IDs • Estilos en línea</p>
+    </div>
+
+    <!-- SECCIÓN 3: Texto Explicativo (ESPECIFICIDAD) -->
+    <div class="container mt-5 mb-4">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <h2 style="color: #4a3f65;">¿Qué es el Nivel de Especificidad?</h2>
+                <p class="text-muted">
+                    La especificidad es el algoritmo que usan los navegadores para decidir qué regla CSS aplicar si hay conflictos (es decir, cuando varias reglas apuntan al mismo elemento). Funciona como un sistema de puntuación: un ID pesa más que una clase, y una clase pesa más que una etiqueta HTML.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 4: Cuadrícula Sólida (ESPECIFICIDAD) -->
+    <div class="container-fluid grid-sin-espacios">
+        <div class="row g-0">
+            <!-- Fila 1 -->
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja1">Inline (1000)</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja6">ID (100)</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja7">Clase (10)</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja8">Pseudo-clase (10)</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja9">Atributo (10)</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja10">Etiqueta (1)</div></div>
+
+            <!-- Fila 2 -->
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja2">Pseudo-elemento</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja3">Universal (0)</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja4">!important (Max)</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja5">Herencia</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja1">Cascada</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja6">Peso / Score</div></div>
+
+            <!-- Fila 3 -->
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja7">Sobreescritura</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja8">Orden de origen</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja9">Conflicto</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja10">Resolución</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja2">Especificidad</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja3">Padre a hijo</div></div>
+        </div>
+    </div>

@@ -4,162 +4,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuadrícula Responsive</title>
+    <title>CSS Box Model - Cuadrícula Sólida</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        /* Estilos básicos para visualizar las cajas */
-        .box {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 15px;
-            font-weight: bold;
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
         }
 
-        .img-box {
-            background-color: #cfe2ff;
-            height: 150px;
+        /* =========================================
+           SECCIÓN 1: ENCABEZADO OSCURO
+           ========================================= */
+        .top-header {
+            background-color: #4a3f65; /* Morado oscuro del fondo superior */
+            padding: 20px 0;
+        }
+
+        .btn-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #a89cbd;
+            border-radius: 8px;
+            padding: 15px 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            height: 100%;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        /* Botón activo o con hover */
+        .btn-top:hover, .btn-top.active {
+            background-color: rgba(255,255,255,0.2);
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        /* =========================================
+           SECCIÓN 2: BANNER HERO
+           ========================================= */
+        .hero-section {
+            background: linear-gradient(135deg, #f5e6eb 0%, #d4e0eb 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 2px solid #eee;
+        }
+
+        /* =========================================
+           SECCIÓN 3 Y 4: CUADRÍCULA SIN ESPACIOS
+           ========================================= */
+        .grid-sin-espacios {
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow: hidden;
+        }
+
+        /* Estilo base para las cajas sólidas */
+        [class*="caja"] {
+            height: 200px; 
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+            cursor: pointer;
+            transition: filter 0.2s ease;
         }
 
-        .img-grande {
-            height: 250px;
-            background-color: #e2e3e5;
+        [class*="caja"]:hover {
+            filter: brightness(1.1);
         }
 
-        /* @MEDIA QUERIES */
+        /* Paleta de colores */
+        .caja1 { background-color: #6313ff; }
+        .caja2 { background-color: #685c7e; }
+        .caja3 { background-color: #2e5077; }
+        .caja4 { background-color: #0f7ebe; }
+        .caja5 { background-color: #200457; }
+        .caja6 { background-color: #ae98db; color: #200457; }
+        .caja7 { background-color: #d8d3e4; color: #2b233a; }
+        .caja8 { background-color: #2b233a; }
+        .caja9 { background-color: #2b0872; }
+        .caja10 { background-color: #9767f8; }
 
-        /* TABLET: Ocultar imágenes medianas (Pantallas entre 768px y 991px) */
-        @media (min-width: 768px) and (max-width: 991px) {
-            .ocultar-en-tablet {
-                display: none !important;
-            }
-        }
-
-        /* MÓVIL: Ajustes adicionales si los necesitas (Pantallas menores a 768px) */
-        @media (max-width: 767px) {
-
-            /* Aquí puedes forzar que las imágenes se intercalen si es necesario */
-            .box {
-                padding: 10px;
-                font-size: 14px;
-            }
-        }
     </style>
 </head>
 
 <body>
 
-    <div class="container mt-4">
-
-        <!-- SECCIÓN 1: Los 4 elementos superiores 
-         Móvil: 1 por fila (col-12) | Tablet: 1 por fila (col-md-12) | PC: 4 por fila (col-lg-3) -->
-        <div class="row">
-            <div class="col-12 col-md-12 col-lg-3">
-                <div class="box">Item 1</div>
-            </div>
-            <div class="col-12 col-md-12 col-lg-3">
-                <div class="box">Item 2</div>
-            </div>
-            <div class="col-12 col-md-12 col-lg-3">
-                <div class="box">Item 3</div>
-            </div>
-            <div class="col-12 col-md-12 col-lg-3">
-                <div class="box">Item 4</div>
-            </div>
-        </div>
-
-        <!-- SECCIÓN 2: Imagen Grande 
-         Siempre ocupa el 100% (1 por fila) -->
-        <div class="row">
-            <div class="col-12">
-                <div class="box img-box img-grande">IMG (Grande)</div>
-            </div>
-        </div>
-
-        <!-- SECCIÓN 3: 2 Imágenes Medianas 
-         Móvil: 1 por fila (col-12) | Tablet: Oculto por @media query | PC: 2 por fila (col-lg-6) -->
-        <div class="row">
-            <div class="col-12 col-lg-6 ocultar-en-tablet">
-                <div class="box img-box">IMG (Mediana)</div>
-            </div>
-            <div class="col-12 col-lg-6 ocultar-en-tablet">
-                <div class="box img-box">IMG (Mediana)</div>
+    <!-- SECCIÓN 1: Menú Superior Oscuro -->
+    <div class="top-header container-fluid">
+        <div class="container">
+            <div class="row g-3 justify-content-center">
+                <!-- Enlaces listos para los otros archivos -->
+                <div class="col-6 col-md-3">
+                    <a href="sintaxis.html" class="btn-top">
+                        <span>Estructura y Sintaxis</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="especificidad.html" class="btn-top">
+                        <span>Niveles de Especificidad</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="pseudo-clases.html" class="btn-top">
+                        <span>Pseudo Clases y Elementos</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <!-- Le puse la clase "active" a este porque es la página actual -->
+                    <a href="#" class="btn-top active">
+                        <span>Box Model</span>
+                    </a>
+                </div>
             </div>
         </div>
-
-        <!-- SECCIÓN 4: Los múltiples elementos inferiores (18 en total para cuadrar 6/3/2)
-         Móvil: 2 por fila (col-6) | Tablet: 3 por fila (col-md-4) | PC: 6 por fila (col-lg-2) -->
-        <div class="row">
-            <!-- Fila 1 en PC (6 elementos) -->
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 1</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 2</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 3</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 4</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 5</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 6</div>
-            </div>
-
-            <!-- Fila 2 en PC (6 elementos) -->
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 7</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 8</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 9</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 10</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 11</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 12</div>
-            </div>
-
-            <!-- Fila 3 en PC (6 elementos) -->
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 13</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 14</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 15</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 16</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 17</div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="box">Item Inf 18</div>
-            </div>
-        </div>
-
     </div>
 
-    <!-- Bootstrap JS (opcional) -->
+    <!-- SECCIÓN 2: Banner Principal (BOX MODEL) -->
+    <div class="hero-section">
+        <h1 class="display-3 fw-bold" style="color: #4a3f65;">CSS Box Model</h1>
+        <p class="fs-4">Margin • Border • Padding • Content</p>
+        <!-- Si quieres agregar tu imagen del diagrama del Box Model, hazlo aquí -->
+    </div>
+
+    <!-- SECCIÓN 3: Texto Explicativo (BOX MODEL) -->
+    <div class="container mt-5 mb-4">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <h2 style="color: #4a3f65;">¿Qué es el Box Model?</h2>
+                <p class="text-muted">
+                    El Box Model o modelo de caja es un concepto fundamental de CSS que explica cómo se organizan y dimensionan los elementos dentro de una página web. En CSS, cada elemento HTML se representa como una caja compuesta por cuatro partes: contenido, relleno, borde y margen. Comprender este modelo permite controlar el tamaño de los elementos, sus espacios internos y externos, y la distribución de los componentes de una página web.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 4: Cuadrícula Sólida "Margen a Margen" (BOX MODEL) -->
+    <div class="container-fluid grid-sin-espacios">
+        <div class="row g-0">
+            <!-- Fila 1 -->
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja1">color</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja6">background</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja7">margin</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja8">padding</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja9">border</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja10">display</div></div>
+
+            <!-- Fila 2 -->
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja2">position</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja3">z-index</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja4">float</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja5">font-family</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja1">text-align</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja6">opacity</div></div>
+
+            <!-- Fila 3 -->
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja7">transition</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja8">transform</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja9">box-shadow</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja10">cursor</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja2">overflow</div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="caja3">clip-path</div></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
