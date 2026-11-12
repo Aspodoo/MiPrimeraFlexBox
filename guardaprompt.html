@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Guardaprompts Personal</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; max-width: 800px; margin: 40px auto; padding: 20px; }
+        h1 { color: #38bdf8; text-align: center; }
+        .card { background: #1e293b; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        input, textarea { width: 100%; padding: 10px; margin: 8px 0 16px 0; background: #0f172a; border: 1px solid #475569; color: white; border-radius: 6px; box-sizing: border-box; }
+        button { background: #38bdf8; color: #0f172a; border: none; padding: 10px 20px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #7dd3fc; }
+        .prompt-item { background: #334155; padding: 15px; border-radius: 8px; margin-top: 15px; position: relative; }
+        .prompt-item h3 { margin: 0 0 5px 0; color: #38bdf8; }
+        .prompt-item p { white-space: pre-wrap; margin: 5px 0 15px 0; color: #cbd5e1; }
+        .actions { display: flex; gap: 10px; }
+        .btn-del { background: #ef4444; color: white; }
+        .btn-del:hover { background: #f87171; }
+        .btn-copy { background: #10b981; color: white; }
+        .btn-copy:hover { background: #34d399; }
+    </style>
+</head>
+<body>
+
+    <h1>Guardaprompts</h1>
+
+    <div class="card">
+        <h2>Guardar Nuevo Prompt</h2>
+        <label>Título o Categoría:</label>
+        <input type="text" id="titulo" placeholder="Ej: Redactor de correos formales">
+        
+        <label>Tu Prompt:</label>
+        <textarea id="contenido" rows="4" placeholder="Escribe aquí el prompt completo..."></textarea>
+        
+        <button onclick="guardarPrompt()">Guardar Prompt</button>
+    </div>
+
+    <div class="card">
+        <h2>Mis Prompts Guardados</h2>
+        <div id="listaPrompts"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", mostrarPrompts);
+
+        function guardarPrompt() {
+            const titulo = document.getElementById("titulo").value.trim();
+            const contenido = document.getElementById("contenido").value.trim();
+
+            if (!titulo || !contenido) {
+                alert("Por favor completa ambos campos.");
+                return;
+            }
+
+            let prompts = JSON.parse(localStorage.getItem("mis_prompts")) || [];
+            prompts.push({ id: Date.now(), titulo, contenido });
+            localStorage.setItem("mis_prompts", JSON.stringify(prompts));
+
+            document.getElementById("titulo").value = "";
+            document.getElementById("contenido").value = "";
+            mostrarPrompts();
+        }
+
+        function mostrarPrompts() {
+            const contenedor = document.getElementById("listaPrompts");
+            let prompts = JSON.parse(localStorage.getItem("mis_prompts")) || [];
+
+            if (prompts.length === 0) {
+                contenedor.innerHTML = "<p style='color: #94a3b8;'>Aún no tienes prompts guardados.</p>";
+                return;
+            }
+
+            contenedor.innerHTML = "";
+            prompts.reverse().forEach(p => {
+                contenedor.innerHTML += `
+                    <div class="prompt-item">
+                        <h3>${p.titulo}</h3>
+                        <p>${p.contenido}</p>
+                        <div class="actions">
+                            <button class="btn-copy" onclick="copiarPrompt('${encodeURIComponent(p.contenido)}')">Copiar</button>
+                            <button class="btn-del" onclick="eliminarPrompt(${p.id})">Eliminar</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function copiarPrompt(texto) {
+            navigator.clipboard.writeText(decodeURIComponent(texto));
+            alert("¡Prompt copiado al portapapeles!");
+        }
+
+        function eliminarPrompt(id) {
+            let prompts = JSON.parse(localStorage.getItem("mis_prompts")) || [];
+            prompts = prompts.filter(p => p.id !== id);
+            localStorage.setItem("mis_prompts", JSON.stringify(prompts));
+            mostrarPrompts();
+        }
+    </script>
+</body>
+</html>
